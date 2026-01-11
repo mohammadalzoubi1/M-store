@@ -1,0 +1,32 @@
+/* components/Footer.css */
+.footer {
+  background: #111;
+  color: #fff;
+  padding: 25px 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.footer-contact span {
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.footer-social a {
+  margin: 0 10px;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-social a:hover {
+  color: #00b894;
+}

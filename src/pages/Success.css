@@ -1,0 +1,57 @@
+.success-container {
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.success-container h1 {
+  color: #00b894;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+.success-container p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.success-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.success-btn:hover {
+  background: #00b894;
+}
+
+/* تصميم متجاوب للموبايل */
+@media (max-width: 600px) {
+  .success-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .success-container h1 {
+    font-size: 22px;
+  }
+
+  .success-container p {
+    font-size: 14px;
+  }
+
+  .success-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
