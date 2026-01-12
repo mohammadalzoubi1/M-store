@@ -1,5 +1,7 @@
 {
   "name": "ecommerce-frontend",
+  "homepage": "https://mohammadalzoubi1.github.io/m-store"
+
   "version": "0.1.0",
   "private": true,
   "dependencies": {
