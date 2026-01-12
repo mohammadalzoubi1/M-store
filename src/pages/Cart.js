@@ -1,8 +1,15 @@
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-
+import "./cart.css";
 export default function Cart() {
-  const { cartItems, removeFromCart, totalPrice } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    increaseQty,
+    decreaseQty,
+    totalPrice
+  } = useCart();
+
   const navigate = useNavigate();
 
   if (cartItems.length === 0) {
@@ -24,6 +31,17 @@ export default function Cart() {
               <div className="cart-info">
                 <h3>{item.name}</h3>
                 <p>${item.price}</p>
+
+                {/* Quantity Controls */}
+                <div className="qty-controls">
+                  <button onClick={() => decreaseQty(item.id)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => increaseQty(item.id)}>+</button>
+                </div>
+
+                <p className="item-total">
+                  Item Total: ${(item.price * item.quantity).toFixed(2)}
+                </p>
               </div>
 
               <button

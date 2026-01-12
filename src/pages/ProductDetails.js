@@ -8,11 +8,12 @@ export default function ProductDetails() {
 
   const product = products.find(p => p.id === Number(id));
 
+  // ✅ تأكد من وجود المنتج أولاً
   if (!product) {
     return <h2 className="empty">Product not found</h2>;
   }
 
-  // نتحقق إذا المنتج موجود بالسلة
+  // ✅ بعد التأكد
   const cartItem = cartItems.find(item => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
@@ -31,7 +32,6 @@ export default function ProductDetails() {
           <p className="details-price">${product.price}</p>
           <p className="details-desc">{product.description}</p>
 
-          {/* إذا المنتج موجود بالسلة نعرض التحكم بالكمية + العدد */}
           {quantity > 0 ? (
             <div className="quantity-control">
               <button onClick={() => decreaseQty(product.id)}>-</button>
@@ -46,7 +46,6 @@ export default function ProductDetails() {
               Add to Cart
             </button>
           )}
-
         </div>
 
       </div>

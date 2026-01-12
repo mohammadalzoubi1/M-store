@@ -26,10 +26,10 @@ export const products = [
   }, {
     id: 4,
     title: "Hand Bag",
-    price: 100.99,
+    price: 50.99,
     category: "All",
     image: "/images/tp.jpg",
-    description: "Elegant watch with modern design"
+    description: "  modern design"
   }
 
 

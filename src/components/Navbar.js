@@ -4,6 +4,12 @@ import { useCart } from "../context/CartContext";
 export default function Navbar() {
   const { cartItems } = useCart();
 
+  // ✅ عدد القطع الفعلي في السلة
+  const totalItems = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
   return (
     <nav className="navbar">
       {/* 🔹 Logo */}
@@ -18,7 +24,7 @@ export default function Navbar() {
         </li>
         <li>
           <Link to="/cart">
-            Cart ({cartItems.length})
+            🛒 Cart ({totalItems})
           </Link>
         </li>
       </ul>

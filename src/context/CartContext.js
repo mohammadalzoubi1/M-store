@@ -9,32 +9,30 @@ export function CartProvider({ children }) {
 
   // ➕ إضافة منتج للسلة
   const addToCart = (product) => {
-    const exist = cartItems.find(item => item.id === product.id);
+    setCartItems(prevItems => {
+      const exist = prevItems.find(item => item.id === product.id);
 
-    if (exist) {
-      // إذا المنتج موجود، نزيد فقط الكمية
-      setCartItems(
-        cartItems.map(item =>
+      if (exist) {
+        return prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        )
-      );
-    } else {
-      // إذا المنتج جديد، نضيفه مع quantity = 1
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
+        );
+      }
+
+      return [...prevItems, { ...product, quantity: 1 }];
+    });
   };
 
   // ❌ حذف منتج كامل
   const removeFromCart = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    setCartItems(prev => prev.filter(item => item.id !== id));
   };
 
   // ➕ زيادة الكمية
   const increaseQty = (id) => {
-    setCartItems(
-      cartItems.map(item =>
+    setCartItems(prev =>
+      prev.map(item =>
         item.id === id
           ? { ...item, quantity: item.quantity + 1 }
           : item
@@ -42,23 +40,23 @@ export function CartProvider({ children }) {
     );
   };
 
-  // ➖ نقصان الكمية (لا تسمح بالسالب)
+  // ➖ نقصان الكمية
   const decreaseQty = (id) => {
-    setCartItems(
-      cartItems
+    setCartItems(prev =>
+      prev
         .map(item =>
           item.id === id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
-        .filter(item => item.quantity > 0) // تمنع الصفر أو السالب
+        .filter(item => item.quantity > 0)
     );
   };
 
-  // 🧹 تفريغ السلة بالكامل
+  // 🧹 تفريغ السلة
   const clearCart = () => setCartItems([]);
 
-  // 💰 حساب المجموع بدقة مع useMemo لتقليل إعادة الحساب
+  // 💰 السعر الإجمالي
   const totalPrice = useMemo(() => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -66,14 +64,12 @@ export function CartProvider({ children }) {
     );
   }, [cartItems]);
 
-  // 📝 حفظ الطلب مع تفاصيل العميل
+  // 📝 حفظ الطلب
   const placeOrder = (order) => {
-    // order = { items, total, customer, date }
-    setOrders([...orders, order]);
+    setOrders(prev => [...prev, order]);
     clearCart();
   };
 
-  // ✅ القيم المتاحة لجميع الصفحات
   return (
     <CartContext.Provider
       value={{
@@ -93,8 +89,4 @@ export function CartProvider({ children }) {
   );
 }
 
-// ✅ Hook لاستخدام السلة في أي صفحة
 export const useCart = () => useContext(CartContext);
-
-export default CartContext;
-

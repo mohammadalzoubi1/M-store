@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import ProductDetails from "./pages/ProductDetails";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -18,6 +18,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+
       </Routes>
 
       <Footer />
